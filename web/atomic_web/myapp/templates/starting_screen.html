@@ -1,10 +1,54 @@
- 
- <form action="/">
-    <label for="photo">Фото шва:</label>
-    <input
-      type="file"
-      id="photo"
-      name="photo"
-      accept="image/png, image/jpeg"
-    />
-  </form>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Проверка сварных швов</title>
+    <style>
+      .container {
+        width: 1440px;
+        max-width: 100%;
+        margin: 0 auto;
+      }
+
+      .wrap {
+        display: flex;
+        gap: 100px;
+      }
+
+      .form-wrap {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .result-img {
+        max-width: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="wrap">
+        <div>
+          <h2>Проверка</h2>
+          <form action="/" class="form-wrap">
+            <label for="photo">Загрузите фото шва</label>
+            <input
+              type="file"
+              id="photo"
+              name="photo"
+              accept="image/png, image/jpeg"
+            />
+            <button>Отправить на проверку</button>
+          </form>
+        </div>
+
+        <div class="result">
+          <h2>Результат обработки</h2>
+          <img class="result-img" src="./img/test.jpg" alt="test" />
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
