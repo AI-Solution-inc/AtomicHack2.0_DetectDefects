@@ -57,11 +57,9 @@
             </ol>
             <div>Уверенность модели <span>60%</span></div>
           </div>
-          <img
-            class="result-img"
-            src="{% static './img/test.jpg' %}"
-            alt="test"
-          />
+            {% if uploaded_file_url %}
+                <img class="result-img" src="{{ uploaded_file_url }}" alt="Processed Image" />
+            {% endif %}
         </div>
       </div>
       <div class="json-data">
