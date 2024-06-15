@@ -102,9 +102,3 @@ def preprocess_data_json(file_path):
 
     # Возвращаем путь к сохраненному изображению
     return processed_data, output_image_path
-
-# # Пример использования
-# file_path = r'C:\Users\zenit\OneDrive\Рабочий стол\hackaton_atomic\web\atomic_web\media\photo_2024-06-15_17-04-44_ALnRFzz.jpg'
-# processed_data, image_url = preprocess_data_json(file_path)
-# print("Processed data:", processed_data)
-# print("URL для вставки в HTML:", image_url)
