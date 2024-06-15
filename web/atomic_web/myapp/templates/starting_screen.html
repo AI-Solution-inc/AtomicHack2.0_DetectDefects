@@ -39,11 +39,11 @@
 
         <div class="result">
           <h2>Результат обработки</h2>
-          <img
-            class="result-img"
-            src="{% static './img/test.jpg' %}"
-            alt="test"
-          />
+        
+            {% if uploaded_file_url %}
+            <img class="result-img" src="{{ uploaded_file_url }}" alt="Processed Image" />
+            {% endif %}
+            
           <div
             class="result-frame"
             data-width="0.022602"
