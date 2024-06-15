@@ -19,4 +19,19 @@ document.addEventListener('DOMContentLoaded', () => {
         .addEventListener("click", () => {
             document.getElementById("photo").click();
         });
+
+
+    // frame
+    const frame = document.querySelector('.result-frame');
+
+    const width = frame.getAttribute('data-width');
+    const height = frame.getAttribute('data-height');
+    const x = frame.getAttribute('data-x');
+    const y = frame.getAttribute('data-y');
+
+    frame.style.width = `calc(${width} * 1000px)`;
+    frame.style.height = `calc(${height} * 1000px)`;
+    frame.style.left = `calc((${x} * 100px) - (${width / 2} * 100px))`;
+    frame.style.top = `calc((${y} * 100px) - (${height / 2} * 100px))`;
+
 })
