@@ -1,10 +1,35 @@
 from django.shortcuts import render
 from django.core.files.storage import FileSystemStorage
+import json
+
+def processing() -> list:
+    return list()
 
 def starting_screen(request):
 
     data = [
-        {
+    {
+        "class": 0,
+        "x": 0.422419,
+        "y": 0.311986,
+        "width": 0.022602,
+        "height": 0.052879
+    },
+    {
+        "class": 0,
+        "x": 0.079719,
+        "y": 0.149236,
+        "width": 0.039707,
+        "height": 0.042303
+    },
+    {
+        "class": 0,
+        "x": 0.049786,
+        "y": 0.062867,
+        "width": 0.037263,
+        "height": 0.06463
+    },
+    {
         "class": 0,
         "x": 0.255956,
         "y": 0.065217,
@@ -80,8 +105,44 @@ def starting_screen(request):
         "y": 0.323149,
         "width": 0.02077,
         "height": 0.103408
+    },
+    {
+        "class": 0,
+        "x": 0.594685,
+        "y": 0.155112,
+        "width": 0.01405,
+        "height": 0.023502
+    },
+    {
+        "class": 0,
+        "x": 0.626756,
+        "y": 0.111046,
+        "width": 0.017104,
+        "height": 0.022327
+    },
+    {
+        "class": 2,
+        "x": 0.513745,
+        "y": 0.932432,
+        "width": 0.107514,
+        "height": 0.052879
+    },
+    {
+        "class": 1,
+        "x": 0.534209,
+        "y": 0.083431,
+        "width": 0.027489,
+        "height": 0.035253
+    },
+    {
+        "class": 1,
+        "x": 0.474343,
+        "y": 0.716216,
+        "width": 0.025046,
+        "height": 0.045828
     }
-    ]
+]
+
 
     if request.method == 'POST' and request.FILES.get('photo'):
         photo = request.FILES['photo']
@@ -90,7 +151,6 @@ def starting_screen(request):
         uploaded_file_url = fs.url(filename)
         
         #тут сделаем обработку
-
 
         context = {
             'uploaded_file_url': uploaded_file_url,
