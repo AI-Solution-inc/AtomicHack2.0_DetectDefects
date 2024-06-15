@@ -1,14 +1,16 @@
 from django.shortcuts import render
 from django.core.files.storage import FileSystemStorage
 from processing.preprocessing_data import preprocess_data_json
+import cv2 
+import os
 
 def processing() -> list:
     return list()
 
 def starting_screen(request):
 
-    data = preprocess_data_json()
 
+    data = []
 #     data = [
 #     {
 #         "class": 0,
@@ -151,12 +153,17 @@ def starting_screen(request):
         fs = FileSystemStorage()
         filename = fs.save(photo.name, photo)
         uploaded_file_url = fs.url(filename)
+
+        # Получение абсолютного пути к файлу
+        absolute_file_path = os.path.join(fs.location, filename)
         
-        #тут сделаем обработку
+        img = cv2.imread(absolute_file_path)
+
+        img = preprocess_data_json(img)
 
         context = {
             'uploaded_file_url': uploaded_file_url,
-            'data': data,
+            'data': img,
         }
         return render(request, 'starting_screen.html', context)
     
