@@ -39,15 +39,18 @@
 
         <div class="result">
           <h2>Результат обработки</h2>
-          <img class="result-img" src="./../static/img/test.jpg" alt="test" />
+          <img
+            class="result-img"
+            src="{% static './img/test.jpg' %}"
+            alt="test"
+          />
           <div
             class="result-frame"
-            width="{%"
-            data[0].width
-            %}
-            height="{%"
-            data[0].height
-            %}
+            data-width="0.022602"
+            data-heigth="0.052879"
+            data-x="0.422419"
+            data-y="0.311986"
+            data-class="0"
           ></div>
           <div class="result-content">
             <div>Обнаружены:</div>
@@ -57,9 +60,6 @@
             </ol>
             <div>Уверенность модели <span>60%</span></div>
           </div>
-            {% if uploaded_file_url %}
-                <img class="result-img" src="{{ uploaded_file_url }}" alt="Processed Image" />
-            {% endif %}
         </div>
       </div>
       <div class="json-data">
