@@ -43,15 +43,17 @@
             {% if uploaded_file_url %}
             <img class="result-img" src="{{ uploaded_file_url }}" alt="Processed Image" />
             {% endif %}
-            
-          <div
-            class="result-frame"
-            data-width="0.022602"
-            data-heigth="0.052879"
-            data-x="0.422419"
-            data-y="0.311986"
-            data-class="0"
-          ></div>
+
+            {% for item in data %}
+            <div
+              class="result-frame"
+              data-width="{{ item.width }}"
+              data-height="{{ item.height }}"
+              data-x="{{ item.x }}"
+              data-y="{{ item.y }}"
+              data-class="{{ item.class }}"
+            ></div>
+            {% endfor %}
           <div class="result-content">
             <div>Обнаружены:</div>
             <ol>
@@ -61,18 +63,6 @@
             <div>Уверенность модели <span>60%</span></div>
           </div>
         </div>
-      </div>
-      <div class="json-data">
-        <h2>JSON Data</h2>
-        {% for item in data %}
-        <div class="json-item">
-          <div>{{ item.width }}</div>
-          <div>{{ item.height }}</div>
-          <div>{{ item.x }}</div>
-          <div>{{ item.y }}</div>
-          <div>{{ item.class }}</div>
-        </div>
-        {% endfor %}
       </div>
     </div>
   </body>
