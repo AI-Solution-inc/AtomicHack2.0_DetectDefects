@@ -23,6 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // frame
     const frames = document.querySelectorAll('.result-frame');
+    const widthImg = document.querySelector('.result-img').style.width;
+    const heigthImg = document.querySelector('.result-img').style.height;
 
     frames.forEach((frame) => {
         let width = frame.getAttribute('data-width');
@@ -30,9 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
         let x = frame.getAttribute('data-x');
         let y = frame.getAttribute('data-y');
 
-        frame.style.width = `calc(${width} * 1000px)`;
-        frame.style.height = `calc(${height} * 1000px)`;
-        frame.style.left = `calc((${x} * 100px) - (${width / 2} * 100px))`;
-        frame.style.top = `calc((${y} * 100px) - (${height / 2} * 100px))`;
+        frame.style.width = `calc(${width * widthImg} * 1px)`;
+        frame.style.height = `calc(${height * heigthImg} * 1000px)`;
+        frame.style.left = `calc((${x} * 1px) - (${widthImg / 2} * 1px))`;
+        frame.style.top = `calc((${y} * 1px) - (${heigthImg / 2} * 1px))`;
     })
 })
