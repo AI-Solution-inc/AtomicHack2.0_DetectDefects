@@ -20,11 +20,11 @@ def starting_screen(request):
         # Получение абсолютного пути к файлу
         absolute_file_path = os.path.join(fs.location, filename)
 
-        img = preprocess_data_json(absolute_file_path)
+        data, img  = preprocess_data_json(absolute_file_path)
 
         context = {
-            'uploaded_file_url': uploaded_file_url,
-            'data': img,
+            'uploaded_file_url': img,
+            'data': data,
         }
         return render(request, 'starting_screen.html', context)
     
