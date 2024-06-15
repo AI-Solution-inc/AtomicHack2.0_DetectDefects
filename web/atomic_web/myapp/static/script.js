@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const input = event.target;
         const wrapper = document.getElementById("form-input-wrapper");
         const label = document.querySelector(".form-label");
+
         if (input.files && input.files[0]) {
             const reader = new FileReader();
             reader.onload = function (e) {
@@ -23,8 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // frame
     const frames = document.querySelectorAll('.result-frame');
-    const widthImg = document.querySelector('.result-img').style.width;
-    const heigthImg = document.querySelector('.result-img').style.height;
+    const widthImg = document.querySelector('.result-img').width;
+    const heigthImg = document.querySelector('.result-img').height;
 
     frames.forEach((frame) => {
         let width = frame.getAttribute('data-width');
@@ -33,8 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let y = frame.getAttribute('data-y');
 
         frame.style.width = `calc(${width * widthImg} * 1px)`;
-        frame.style.height = `calc(${height * heigthImg} * 1000px)`;
-        frame.style.left = `calc((${x} * 1px) - (${widthImg / 2} * 1px))`;
-        frame.style.top = `calc((${y} * 1px) - (${heigthImg / 2} * 1px))`;
+        frame.style.height = `calc(${height * heigthImg} * 1px)`;
+        frame.style.left = `calc((${x} * 1px) + (${widthImg / 2} * 1px))`;
+        frame.style.top = `calc((${y} * 1px) + (${heigthImg / 2} * 1px))`;
     })
 })

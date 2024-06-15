@@ -5,14 +5,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Проверка сварных швов</title>
-    <link rel="stylesheet" href="./../static/styles.css" />
-    <script src="./../static/script.js"></script>
+    <link rel="stylesheet" href="{% static 'styles.css' %}" />
+    <script src="{% static 'script.js' %}"></script>
   </head>
   <body>
+    <header class="header"></header>
     <div class="container">
       <div class="wrap">
         <div>
-          <h2 class="title">Проверка</h2>
+          <h2 class="title">Отправка</h2>
           <form
             action="/"
             method="post"
@@ -36,6 +37,7 @@
             </button>
           </form>
         </div>
+        <div className="loader"></div>
 
         <div class="result">
           <h2 class="title">Результат обработки</h2>
@@ -49,26 +51,15 @@
             />
             {% endif %}
 
-            <div>
-              {% for item in data %}
-              <div
-                class="result-frame"
-                data-width="{{ item.width }}"
-                data-height="{{ item.height }}"
-                data-x="{{ item.x }}"
-                data-y="{{ item.y }}"
-                data-class="{{ item.class }}"
-              ></div>
-              {% endfor %}
-            </div>
-
           <div class="result-content">
-            <div>Обнаружены:</div>
-            <ol>
+            <h3 class="result-title">Дефекты сварных швов:</h3>
+            <ul class="result-list">
               <li>прилегающие дефекты</li>
+              <li>дефекты целостности</li>
+              <li>дефекты геометрии</li>
+              <li>дефекты постобработки</li>
               <li>дефекты невыполнения</li>
-            </ol>
-            <div>Уверенность модели <span>60%</span></div>
+            </ul>
           </div> 
         </div>
       </div>
