@@ -49,16 +49,19 @@
             />
             {% endif %}
 
-            {% for item in data %}
-            <div
-              class="result-frame"
-              data-width="{{ item.width }}"
-              data-height="{{ item.height }}"
-              data-x="{{ item.x }}"
-              data-y="{{ item.y }}"
-              data-class="{{ item.class }}"
-            ></div>
-            {% endfor %}
+            <div>
+              {% for item in data %}
+              <div
+                class="result-frame"
+                data-width="{{ item.width }}"
+                data-height="{{ item.height }}"
+                data-x="{{ item.x }}"
+                data-y="{{ item.y }}"
+                data-class="{{ item.class }}"
+              ></div>
+              {% endfor %}
+            </div>
+
           <div class="result-content">
             <div>Обнаружены:</div>
             <ol>
