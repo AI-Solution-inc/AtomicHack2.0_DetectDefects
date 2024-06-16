@@ -1,13 +1,11 @@
-
 from aiogram.exceptions import TelegramBadRequest
 from aiogram import Bot, types
-from aiogram import Router, F
+from aiogram import Router
 from aiogram.types import Message, BufferedInputFile
-from aiogram.filters import Command, StateFilter
+from aiogram.filters import Command
 from io import BytesIO
 import os
 import numpy as np
-import cv2
 from PIL import Image
 
 from ultralytics import YOLO
@@ -20,7 +18,7 @@ matplotlib.use('Agg')
 
 router = Router()
 
-model = YOLO("D:\\DOCS\\contest\\atomic_hack\\DetectDefects\\tg-bot\\model\\best.pt")
+model = YOLO("D:\\DOCS\\contest\\atomic_hack\\DetectDefects\\tg-bot\\model\\best (1).pt")
 colors = ['#19F754', '#F7F019', '#F77919', '#F73E19', '#510808']
 
 @router.message(Command('start'))

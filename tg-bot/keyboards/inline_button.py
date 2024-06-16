@@ -1,6 +1,4 @@
-from aiogram import Router, F, types
-from aiogram.filters import Command
-from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from aiogram import types
 
 
 # определим кнопки на всякий случай
