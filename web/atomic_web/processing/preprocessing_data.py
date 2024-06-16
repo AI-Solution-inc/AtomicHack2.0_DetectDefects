@@ -8,8 +8,6 @@ import os
 import matplotlib
 matplotlib.use('Agg') 
 
-# modelDef = YOLO(r'C:\Users\zenit\OneDrive\Рабочий стол\hackaton_atomic\web\atomic_web\processing\best (1).pt')
-
 # def preprocess_data_json(file_path):
 
 #     # Реализация функции предобработки данных
@@ -81,12 +79,12 @@ def preprocess_data_json(file_path):
                                           float(bb[2]) * width, float(bb[3]) * height)
         xLeBB, yLeBB = xCen - (widBB / 2), yCen - (heiBB / 2)
 
-        rectTig = patches.Rectangle((xLeBB, yLeBB), widBB, heiBB, linewidth=3, edgecolor=colors[clDe], facecolor='none')
+        rectTig = patches.Rectangle((xLeBB, yLeBB), widBB, heiBB, linewidth=5, edgecolor=colors[clDe], facecolor='none')
         ax1.add_patch(rectTig)
 
     # Сохранение изображения в файл
     output_image_path = os.path.join('media', 'output_image.png')  # Путь к папке media
-    plt.savefig(output_image_path, transparent=True, bbox_inches='tight', pad_inches=0)
+    plt.savefig(output_image_path, transparent=True, pad_inches=0)
     plt.close(fig)
 
     # Создание списка словарей в нужном формате
