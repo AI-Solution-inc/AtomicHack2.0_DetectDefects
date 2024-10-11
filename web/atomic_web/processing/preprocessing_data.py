@@ -1,141 +1,102 @@
-# models/preprocessing_functions.py
+# processing/preprocessing_functions.py
+from ultralytics import YOLO 
+import cv2 
+import matplotlib.pyplot as plt
+import matplotlib.patches as patches
+import os
 
-def preprocess_data_json():
+import matplotlib
+matplotlib.use('Agg') 
+
+# def preprocess_data_json(file_path):
+
+#     # Реализация функции предобработки данных
+#     colors = ['#19F754', '#F7F019', '#F77919', '#F73E19', '#510808']    
+
+#     imgT = cv2.imread(file_path)
+
+#     pred = modelDef(imgT, imgsz = 640)[0]
+
+#     boxes = pred.boxes.xywhn
+#     cls = pred.boxes.cls
+
+#     coordinates = boxes.tolist()
+#     classes = cls.tolist()
+
+#     fig = plt.figure(figsize = (8, 10))
+#     fig,ax1 = fig.add_subplot()
+#     ax1.imshow(imgT)
+#     ax1.set_title(f'{listW[ind]}')
+#     width, height = imgT.shape[1],  imgT.shape[0]
+#     for i in range(len(boxes)):
+#         bb = boxes[i]
+#         clDe, xCen, yCen, widBB, heiBB = (int(cls[i]), float(bb[0]) * width, float(bb[1]) * height, 
+#                                         float(bb[2]) * width, float(bb[3]) * height)
+#         #plt.scatter(xCen, yCen, s = 12, c = colors[clDef])
+#         xLeBB, yLeBB = xCen - (widBB / 2),  yCen - (heiBB / 2)
+
+#         rectTig = patches.Rectangle((xLeBB, yLeBB), widBB, heiBB, linewidth=1.5, edgecolor= colors[clDe], facecolor='none')
+#         ax1.add_patch(rectTig)
+        
+#     plt.show()
+#     # Создание списка словарей в нужном формате
+#     processed_data = []
+#     for coord, cls in zip(coordinates, classes):
+#         processed_data.append({
+#             "class": int(cls),
+#             "x": coord[0],
+#             "y": coord[1],
+#             "width": coord[2],
+#             "height": coord[3]
+#         })
+
+#     return processed_data
+
+
+modelDef = YOLO('processing/best (1).pt')
+
+def preprocess_data_json(file_path):
     # Реализация функции предобработки данных
-    processed_data = [
-    {
-        "class": 0,
-        "x": 0.422419,
-        "y": 0.311986,
-        "width": 0.022602,
-        "height": 0.052879
-    },
-    {
-        "class": 0,
-        "x": 0.079719,
-        "y": 0.149236,
-        "width": 0.039707,
-        "height": 0.042303
-    },
-    {
-        "class": 0,
-        "x": 0.049786,
-        "y": 0.062867,
-        "width": 0.037263,
-        "height": 0.06463
-    },
-    {
-        "class": 0,
-        "x": 0.255956,
-        "y": 0.065217,
-        "width": 0.032987,
-        "height": 0.041128
-    },
-    {
-        "class": 0,
-        "x": 0.282529,
-        "y": 0.112221,
-        "width": 0.032376,
-        "height": 0.045828
-    },
-    {
-        "class": 0,
-        "x": 0.386683,
-        "y": 0.149236,
-        "width": 0.035431,
-        "height": 0.077556
-    },
-    {
-        "class": 0,
-        "x": 0.385461,
-        "y": 0.476498,
-        "width": 0.017104,
-        "height": 0.041128
-    },
-    {
-        "class": 0,
-        "x": 0.603238,
-        "y": 0.556404,
-        "width": 0.021381,
-        "height": 0.048179
-    },
-    {
-        "class": 0,
-        "x": 0.35675,
-        "y": 0.053467,
-        "width": 0.013439,
-        "height": 0.029377
-    },
-    {
-        "class": 0,
-        "x": 0.384239,
-        "y": 0.057579,
-        "width": 0.018326,
-        "height": 0.028202
-    },
-    {
-        "class": 0,
-        "x": 0.222358,
-        "y": 0.013514,
-        "width": 0.018326,
-        "height": 0.024677
-    },
-    {
-        "class": 0,
-        "x": 0.41631,
-        "y": 0.819624,
-        "width": 0.018937,
-        "height": 0.043478
-    },
-    {
-        "class": 0,
-        "x": 0.410812,
-        "y": 0.972385,
-        "width": 0.01405,
-        "height": 0.031727
-    },
-    {
-        "class": 0,
-        "x": 0.799633,
-        "y": 0.323149,
-        "width": 0.02077,
-        "height": 0.103408
-    },
-    {
-        "class": 0,
-        "x": 0.594685,
-        "y": 0.155112,
-        "width": 0.01405,
-        "height": 0.023502
-    },
-    {
-        "class": 0,
-        "x": 0.626756,
-        "y": 0.111046,
-        "width": 0.017104,
-        "height": 0.022327
-    },
-    {
-        "class": 2,
-        "x": 0.513745,
-        "y": 0.932432,
-        "width": 0.107514,
-        "height": 0.052879
-    },
-    {
-        "class": 1,
-        "x": 0.534209,
-        "y": 0.083431,
-        "width": 0.027489,
-        "height": 0.035253
-    },
-    {
-        "class": 1,
-        "x": 0.474343,
-        "y": 0.716216,
-        "width": 0.025046,
-        "height": 0.045828
-    }
-] # Примерная функция, замените на свою логику
-    
-    return processed_data
+    colors = ['#19F754', '#F7F019', '#F77919', '#F73E19', '#510808']    
+
+    imgT = cv2.imread(file_path)
+    pred = modelDef(imgT, imgsz=640)[0]
+
+    boxes = pred.boxes.xywhn
+    cls = pred.boxes.cls
+
+    coordinates = boxes.tolist()
+    classes = cls.tolist()
+
+    height, width, _ = imgT.shape
+    fig, ax1 = plt.subplots(figsize=(width / 100, height / 100), dpi=100, facecolor='none')
+    ax1.imshow(imgT)
+    ax1.axis('off')
+    width, height = imgT.shape[1], imgT.shape[0]
+    for i in range(len(boxes)):
+        bb = boxes[i]
+        clDe, xCen, yCen, widBB, heiBB = (int(cls[i]), float(bb[0]) * width, float(bb[1]) * height,
+                                          float(bb[2]) * width, float(bb[3]) * height)
+        xLeBB, yLeBB = xCen - (widBB / 2), yCen - (heiBB / 2)
+
+        rectTig = patches.Rectangle((xLeBB, yLeBB), widBB, heiBB, linewidth=5, edgecolor=colors[clDe], facecolor='none')
+        ax1.add_patch(rectTig)
+
+    # Сохранение изображения в файл
+    output_image_path = os.path.join('media', 'output_image.png')  # Путь к папке media
+    plt.savefig(output_image_path, transparent=True, pad_inches=0)
+    plt.close(fig)
+
+    # Создание списка словарей в нужном формате
+    processed_data = []
+    for coord, cls in zip(coordinates, classes):
+        processed_data.append({
+            "class": int(cls),
+            "x": coord[0],
+            "y": coord[1],
+            "width": coord[2],
+            "height": coord[3]
+        })
+
+    # Возвращаем путь к сохраненному изображению
+    return processed_data, output_image_path
